@@ -1,0 +1,39 @@
+// All Tracks>Data Structures> Arrays> 1-D> Problem
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int arr[n],brr[n];
+		for(int i=0;i<n;i++)
+			cin>>arr[i];	
+		for(int i=0;i<n;i++)
+			cin>>brr[i];
+		vector<int>v;
+		unordered_map<int,int>mp;
+		for(int i=0;i<n;i++)
+		{
+			int num = arr[i]+brr[n-i-1];
+			if(num>=n || mp.find(n-num)!=mp.end())
+				break;
+			v.push_back(n-num);
+			mp[n-num]=1;
+		}
+		if(v.size()==n)
+		{
+			for(int i=0;i<n;i++)
+				cout<<v[i]<<" ";
+		}
+		else
+			cout<<-1;
+		cout<<endl;
+	}
+	return 0;
+}
