@@ -1,0 +1,57 @@
+// All Tracks>Data Structures> Trees> Binary/ N-ary Trees> Problem
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	
+	long long k,q;
+    cin>>k>>q;
+    unordered_map<long long,long long>mp;
+    vector<long long>ans;
+    for(long long i=0;i<q;i++){
+        long long t;
+        cin>>t;
+        if(t==1){
+            long long u,v,d=0;
+            cin>>u>>v;
+            if(u>v)
+                swap(u,v);
+            
+            while(u!=v){
+                long long p = (v*10)+(v/k);
+                if(mp.find(p)==mp.end())
+                    d++;
+                else
+                    d += mp[p];
+                v=v/k;
+                if(u>v)
+                    swap(u,v);    
+            }
+            ans.push_back(d);
+        }else{
+            long long u,v,w;
+            cin>>u>>v>>w;
+            if(u>v)
+                swap(u,v);
+            while(u!=v){
+                long long p = (v*10)+(v/k);
+                v=v/k;
+                if(u>v)
+                    swap(u,v); 
+                if(mp.find(p)==mp.end())
+                    mp[p] = w+1;
+                else
+                    mp[p] += w; 
+            }
+        }
+        // cout<<"*"<<q<<endl;
+    }
+    for(auto& x:ans)
+        cout<<x<<endl;
+    return 0;
+}
+
